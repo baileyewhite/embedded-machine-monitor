@@ -1,0 +1,13 @@
+# CMake/build output
+**/build/
+
+# Generated Pico firmware
+*.uf2
+*.elf
+*.bin
+*.hex
+*.map
+
+# OS junk
+.DS_Store
+Thumbs.db
