@@ -1,0 +1,8 @@
+gpio_set_dir(BUTTON_PIN, GPIO_IN);
+
+    // Hold the input HIGH when the button isn't pressed.
+    gpio_pull_up(BUTTON_PIN);
+
+    while (true)
+    {
+        bool button_pres
