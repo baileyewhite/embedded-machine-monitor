@@ -15,6 +15,7 @@ add_executable(machine_monitor
 
 target_link_libraries(machine_monitor
     pico_stdlib
+    hardware_adc
 )
 
 pico_enable_stdio_usb(machine_monitor 1)
