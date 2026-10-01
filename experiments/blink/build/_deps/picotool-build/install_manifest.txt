@@ -1,0 +1,7 @@
+/home/whiteb11/embedded-machine-monitor/blink/build/_deps/picotool/picotool
+/home/whiteb11/embedded-machine-monitor/blink/build/_deps/picotool/picotoolTargets.cmake
+/home/whiteb11/embedded-machine-monitor/blink/build/_deps/picotool/picotoolTargets-release.cmake
+/home/whiteb11/embedded-machine-monitor/blink/build/_deps/picotool/picotoolConfig.cmake
+/home/whiteb11/embedded-machine-monitor/blink/build/_deps/picotool/picotoolConfigVersion.cmake
+/home/whiteb11/embedded-machine-monitor/blink/build/_deps/picotool/enc_bootloader.elf
+/home/whiteb11/embedded-machine-monitor/blink/build/_deps/picotool/enc_bootloader_mbedtls.elf
