@@ -1,3 +1,4 @@
 {
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/firmware/build/compile_commands.json",
     "cmake.sourceDirectory": "/home/whiteb11/embedded-machine-monitor/firmware"
 }

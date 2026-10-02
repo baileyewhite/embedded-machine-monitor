@@ -4,6 +4,7 @@ include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 
 project(machine_monitor C CXX ASM)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
@@ -12,6 +13,7 @@ pico_sdk_init()
 add_executable(machine_monitor
     src/main.cpp
     src/temp.cpp
+    src/telemetry.cpp
 )
 
 target_link_libraries(machine_monitor

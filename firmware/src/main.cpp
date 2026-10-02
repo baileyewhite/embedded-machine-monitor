@@ -1,5 +1,9 @@
 #include <cstdio>
+#include <string>
+
 #include "temp.h"
+#include "telemetry.h"
+
 #include "pico/stdlib.h"
 #include "hardware/adc.h"
 
@@ -12,7 +16,7 @@ int main()
 
     adc_select_input(4);
 
-    // constexpr to tell say we can compute this at compile time.
+    // constexpr to allow this value to be computed at compile time
     constexpr float temp_conversion_factor = 3.3f / 4096.0f;
 
     int tick = 1;
@@ -23,8 +27,9 @@ int main()
         float temp_volt = adc_temp * temp_conversion_factor;
         float celsius_temp = convert_volt_to_temp(temp_volt);
         float fahr_temp = convert_celsius_to_fahrenheit(celsius_temp);
+        std::string temp_status = temperature_telcheck(celsius_temp);
         
-        printf("Tick - %d - ADC Temp Value: %d - Voltage: %.2f - Temp: %.2f °C|%.2f °F\n", tick, adc_temp, temp_volt, celsius_temp, fahr_temp);
+        printf("Tick: %d | ADC: %d | Voltage: %.2f | Temp: %.2f °C = %.2f °F | Status: %s\n", tick, adc_temp, temp_volt, celsius_temp, fahr_temp, temp_status.c_str());
         tick++;
         sleep_ms(1000);
     }
