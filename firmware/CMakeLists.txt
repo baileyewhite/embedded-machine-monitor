@@ -14,11 +14,13 @@ add_executable(machine_monitor
     src/main.cpp
     src/temp.cpp
     src/telemetry.cpp
+    src/machine.cpp
 )
 
 target_link_libraries(machine_monitor
     pico_stdlib
     hardware_adc
+    pico_cyw43_arch_none
 )
 
 target_include_directories(machine_monitor PRIVATE

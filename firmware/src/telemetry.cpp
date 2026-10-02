@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <string>
+#include "telemetry.h"
 
 std::string temperature_telcheck(float temp)
 {
