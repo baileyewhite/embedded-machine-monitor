@@ -10,12 +10,9 @@
 
 int main()
 {
-    bool button_works;
-    
     stdio_init_all();
     adc_init();
-    if(init_button())
-        button_works = true;
+    bool button_works = (init_button() == 0);
 
     adc_set_temp_sensor_enabled(true);
 
@@ -31,7 +28,7 @@ int main()
         uint16_t adc_temp = adc_read();
         float temp_volt = adc_temp * temp_conversion_factor;
         float celsius_temp = convert_volt_to_temp(temp_volt);
-        float fahr_temp = convert_celsius_to_fahrenheit(celsius_temp);
+        //float fahr_temp = convert_celsius_to_fahrenheit(celsius_temp);
         std::string temp_status = temperature_telcheck(celsius_temp);
         std::string button_state;
 
