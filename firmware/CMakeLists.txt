@@ -11,11 +11,16 @@ pico_sdk_init()
 
 add_executable(machine_monitor
     src/main.cpp
+    src/temp.cpp
 )
 
 target_link_libraries(machine_monitor
     pico_stdlib
     hardware_adc
+)
+
+target_include_directories(machine_monitor PRIVATE
+    include
 )
 
 pico_enable_stdio_usb(machine_monitor 1)
