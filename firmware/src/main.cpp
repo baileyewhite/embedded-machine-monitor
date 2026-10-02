@@ -10,9 +10,12 @@
 
 int main()
 {
+    bool button_works;
+    
     stdio_init_all();
     adc_init();
-    init_button();
+    if(init_button())
+        button_works = true;
 
     adc_set_temp_sensor_enabled(true);
 
@@ -30,11 +33,19 @@ int main()
         float celsius_temp = convert_volt_to_temp(temp_volt);
         float fahr_temp = convert_celsius_to_fahrenheit(celsius_temp);
         std::string temp_status = temperature_telcheck(celsius_temp);
-        int8_t button_status = read_button();
-        std::string button_state = read_machine_state(button_status);
+        std::string button_state;
 
-        button_led(button_status);
 
+        if (button_works)
+        {
+            bool button_status = read_button();
+            button_state = read_machine_state(button_status);
+
+            button_led(button_status);
+        }
+        else
+            button_state = "N/A";
+        
         printf("Tick: %d | Machine(Button): %s | Temp: %.2f °C | Status: %s\n", tick, button_state.c_str(), celsius_temp, temp_status.c_str());
         tick++;
         sleep_ms(1000);

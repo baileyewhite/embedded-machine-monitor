@@ -12,17 +12,17 @@ int8_t init_button()
     return 0;
 }
 
-int8_t read_button()
+bool read_button()
 {
     bool button_pressed = !gpio_get(BUTTON_PIN);
 
     if (button_pressed)
-        return 1;
+        return true;
     else
-        return 0;
+        return false;
 }
 
-void button_led(const int button_status)
+void button_led(bool button_status)
 {
     if ( button_status == 1)
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
@@ -30,9 +30,9 @@ void button_led(const int button_status)
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
 }
 
-std::string read_machine_state(const int status)
+std::string read_machine_state(bool status)
 {
-    if (status == 1)
+    if (status)
         return "RUNNING";
     else
         return "STOPPED";
