@@ -12,7 +12,8 @@ int main()
 
     adc_select_input(4);
 
-    float temp_conversion_factor = 3.3f / 4096.0f;
+    // constexpr to tell say we can compute this at compile time.
+    constexpr float temp_conversion_factor = 3.3f / 4096.0f;
 
     int tick = 1;
 
@@ -20,10 +21,10 @@ int main()
     {
         uint16_t adc_temp = adc_read();
         float temp_volt = adc_temp * temp_conversion_factor;
-        float celc_temp = convert_volt_to_temp(temp_volt);
-        float fahr_temp = convert_celsius_to_fahrenheit(celc_temp);
+        float celsius_temp = convert_volt_to_temp(temp_volt);
+        float fahr_temp = convert_celsius_to_fahrenheit(celsius_temp);
         
-        printf("Embedded Machine Monitor alive - %d - ADC Temp: %d - Voltage: %.2f - Temp: %.2f C°, %.2f F°\n", tick, adc_temp, temp_volt, celc_temp, fahr_temp);
+        printf("Tick - %d - ADC Temp Value: %d - Voltage: %.2f - Temp: %.2f °C|%.2f °F\n", tick, adc_temp, temp_volt, celsius_temp, fahr_temp);
         tick++;
         sleep_ms(1000);
     }
