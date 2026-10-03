@@ -28,22 +28,27 @@ int main()
         uint16_t adc_temp = adc_read();
         float temp_volt = adc_temp * temp_conversion_factor;
         float celsius_temp = convert_volt_to_temp(temp_volt);
-        //float fahr_temp = convert_celsius_to_fahrenheit(celsius_temp);
         std::string temp_status = temperature_telcheck(celsius_temp);
         std::string button_state;
-
+        bool button_status;
+        std::string machine_health;
 
         if (button_works)
         {
-            bool button_status = read_button();
+            button_status = read_button();
             button_state = read_machine_state(button_status);
 
             button_led(button_status);
+
+            machine_health = machine_health_check(temp_status, button_status);
         }
         else
+        {
             button_state = "N/A";
-        
-        printf("Tick: %d | Machine(Button): %s | Temp: %.2f °C | Status: %s\n", tick, button_state.c_str(), celsius_temp, temp_status.c_str());
+            machine_health = "UNKNOWN";
+        }
+
+        printf("Tick: %d | Machine(Button): %s | Temp: %.2f °C | Temp Status: %s | Health: %s\n", tick, button_state.c_str(), celsius_temp, temp_status.c_str(), machine_health.c_str());
         tick++;
         sleep_ms(1000);
     }
