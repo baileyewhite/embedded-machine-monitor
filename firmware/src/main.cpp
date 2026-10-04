@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <string>
+#include <vector>
 
 #include "temp.h"
 #include "telemetry.h"
@@ -20,8 +21,6 @@ int main()
 
     // constexpr to allow this value to be computed at compile time
     constexpr float temp_conversion_factor = 3.3f / 4096.0f;
-
-    int tick = 1;
 
     while(true)
     {
@@ -48,8 +47,9 @@ int main()
             machine_health = "UNKNOWN";
         }
 
-        printf("Tick: %d | Machine(Button): %s | Temp: %.2f °C | Temp Status: %s | Health: %s\n", tick, button_state.c_str(), celsius_temp, temp_status.c_str(), machine_health.c_str());
-        tick++;
+        //printf("Tick: %d | Machine(Button): %s | Temp: %.2f °C | Temp Status: %s | Health: %s\n", tick_count, button_state.c_str(), celsius_temp, temp_status.c_str(), machine_health.c_str());
+        printf("%s,%.2f,%s,%s\n", button_state.c_str(), celsius_temp, temp_status.c_str(), machine_health.c_str());
+        
         sleep_ms(1000);
     }
 }
