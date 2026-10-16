@@ -5,12 +5,14 @@
 #include <iostream>
 #include <optional>
 
+#include "telemetry_enums.h"
+
 struct Tick
 {
-    std::string machine_state;
+    MachineState machine_state;
     float temperature;
-    std::string temp_status;
-    std::string health;
+    TempStatus temp_status;
+    Health health;
 };
 
 std::ostream& operator<<(std::ostream& os, const Tick& tick);

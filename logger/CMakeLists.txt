@@ -10,6 +10,7 @@ add_executable(machine_logger
     src/csv.cpp
     src/tick.cpp
     src/timestamp.cpp
+    src/telemetry_enums.cpp
 )
 
 target_include_directories(machine_logger PRIVATE

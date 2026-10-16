@@ -19,6 +19,8 @@ int main()
     std::string timestamp;
 
     std::ofstream csvFile = create_telemetry_csv();
+    if (!csvFile.is_open())
+        return 1;
 
     while(std::getline(serial, line))
     {
@@ -29,7 +31,10 @@ int main()
 
         std::optional<Tick> tick = parse_telemetry_tick(line);
 
-        if(tick)
+        if(!tick)
+            std::cerr << "Error: Invalid Tick Object\n";
+
+        else
         {
             std::cout << timestamp << ',' << *tick << '\n';
             csvFile << timestamp << ',' << *tick << std::endl;
