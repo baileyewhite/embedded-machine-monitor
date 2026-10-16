@@ -3,6 +3,7 @@
 #include <string>
 #include "pico/stdlib.h"
 #include "pico/cyw43_arch.h"
+#include "telemetry_enums.h"
 
 constexpr uint BUTTON_PIN = 14;
 
@@ -12,4 +13,4 @@ bool read_button();
 
 void button_led(bool button_status);
 
-std::string read_machine_state(bool status);
+MachineState read_machine_state(bool status);

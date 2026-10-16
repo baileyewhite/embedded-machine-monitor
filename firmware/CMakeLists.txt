@@ -15,6 +15,7 @@ add_executable(machine_monitor
     src/temp.cpp
     src/telemetry.cpp
     src/machine.cpp
+    ../shared/src/telemetry_enums.cpp
 )
 
 target_link_libraries(machine_monitor
@@ -25,6 +26,7 @@ target_link_libraries(machine_monitor
 
 target_include_directories(machine_monitor PRIVATE
     include
+    ../shared/include
 )
 
 pico_enable_stdio_usb(machine_monitor 1)

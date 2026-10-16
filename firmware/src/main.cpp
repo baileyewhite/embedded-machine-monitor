@@ -26,10 +26,10 @@ int main()
         uint16_t adc_temp = adc_read();
         float temp_volt = adc_temp * temp_conversion_factor;
         float celsius_temp = convert_volt_to_temp(temp_volt);
-        std::string temp_status = temperature_telcheck(celsius_temp);
-        std::string button_state;
+        TempStatus temp_status = temperature_telcheck(celsius_temp);
+        MachineState button_state;
         bool button_status;
-        std::string machine_health;
+        Health machine_health;
 
         if (button_works)
         {
@@ -42,12 +42,11 @@ int main()
         }
         else
         {
-            button_state = "N/A";
-            machine_health = "UNKNOWN";
+            button_state = MachineState::NotAvailable;
+            machine_health = Health::Unknown;
         }
 
-        //printf("Tick: %d | Machine(Button): %s | Temp: %.2f °C | Temp Status: %s | Health: %s\n", tick_count, button_state.c_str(), celsius_temp, temp_status.c_str(), machine_health.c_str());
-        printf("%s,%.2f,%s,%s\n", button_state.c_str(), celsius_temp, temp_status.c_str(), machine_health.c_str());
+        printf("%s,%.2f,%s,%s\n", machine_state_to_string(button_state).c_str(), celsius_temp, temp_status_to_string(temp_status).c_str(), health_to_string(machine_health).c_str());
 
         sleep_ms(1000);
     }

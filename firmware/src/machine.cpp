@@ -30,10 +30,10 @@ void button_led(bool button_status)
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
 }
 
-std::string read_machine_state(bool status)
+MachineState read_machine_state(bool status)
 {
     if (status)
-        return "RUNNING";
+        return MachineState::Running;
     else
-        return "STOPPED";
+        return MachineState::Stopped;
 }

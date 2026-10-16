@@ -19,30 +19,6 @@ std::optional<EnumType> read_enum_field(
     return converter(text);
 }
 
-/*
-bool check_serial_line_validity(std::string machine_state,
-    float temp,
-    std::string temp_status,
-    std::string health)
-{
-    if (machine_state != "RUNNING" && machine_state != "STOPPED" && machine_state != "N/A")
-        return false;
-    
-    if (temp <= -200 || temp >= 200)
-        return false;
-    
-    if (temp_status != "NORMAL" && temp_status != "WARNING" && temp_status != "CRITICAL")
-        return false;
-    
-    if (health != "UNKNOWN" && health != "IDLE" && health != "HEALTHY" && health != "WARNING" &&
-        health != "FAULT" && health != "RUNNING FALLBACK" && health != "INVESTIGATE" &&
-        health != "STOPPED FALLBACK")
-        return false;
-    
-    return true;
-}
-*/
-
 std::optional<Tick> parse_telemetry_tick(const std::string& line)
 {   
     std::stringstream ss(line);
@@ -82,13 +58,6 @@ std::optional<Tick> parse_telemetry_tick(const std::string& line)
     {
         return std::nullopt;
     }
-
-    //bool line_valid = check_serial_line_validity(machine_state, temp_c, temp_status, health);   
-
-    /*
-    if (!line_valid)
-        return std::nullopt;
-    */
 
     Tick tick = {
         *machine_state,

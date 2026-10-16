@@ -1,40 +1,40 @@
 #include "telemetry.h"
 
-std::string temperature_telcheck(float temp)
+TempStatus temperature_telcheck(float temp)
 {
     // based on celsius value
     if(temp > 10.0f && temp < 25.0f)
-        return "NORMAL";
+        return TempStatus::Normal;
     else if(temp > 4.0f && temp < 40.0f)
-        return "WARNING";
+        return TempStatus::Warning;
     else
-        return "CRITICAL";
+        return TempStatus::Critical;
 }
 
 
-std::string machine_health_check(std::string temp_check, bool running)
+Health machine_health_check(TempStatus temp_check, bool running)
 {
     if(running)
     {
-        if(temp_check == "NORMAL")
-            return "HEALTHY";
-        else if(temp_check == "WARNING")
-            return "WARNING";
-        else if(temp_check == "CRITICAL")
-            return "FAULT";
+        if(temp_check == TempStatus::Normal)
+            return Health::Healthy;
+        else if(temp_check == TempStatus::Warning)
+            return Health::Warning;
+        else if(temp_check == TempStatus::Critical)
+            return Health::Fault;
         else
-            return "RUNNING FALLBACK";
+            return Health::RunningFallback;
     }
 
     else
     {
-        if(temp_check == "NORMAL")
-            return "IDLE";
-        else if(temp_check == "WARNING")
-            return "WARNING";
-        else if(temp_check == "CRITICAL")
-            return "INVESTIGATE";
+        if(temp_check == TempStatus::Normal)
+            return Health::Idle;
+        else if(temp_check == TempStatus::Warning)
+            return Health::Warning;
+        else if(temp_check == TempStatus::Critical)
+            return Health::Investigate;
         else
-            return "STOPPED FALLBACK";
+            return Health::StoppedFallback;
     }
 }

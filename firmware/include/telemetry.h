@@ -1,7 +1,8 @@
 #pragma once
 
 #include <string>
+#include "telemetry_enums.h"
 
-std::string temperature_telcheck(float temp);
+TempStatus temperature_telcheck(float temp);
 
-std::string machine_health_check(std::string temp_check, bool running);
+Health machine_health_check(TempStatus temp_check, bool running);
