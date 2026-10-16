@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <string>
-#include <vector>
 
 #include "temp.h"
 #include "telemetry.h"
@@ -49,7 +48,7 @@ int main()
 
         //printf("Tick: %d | Machine(Button): %s | Temp: %.2f °C | Temp Status: %s | Health: %s\n", tick_count, button_state.c_str(), celsius_temp, temp_status.c_str(), machine_health.c_str());
         printf("%s,%.2f,%s,%s\n", button_state.c_str(), celsius_temp, temp_status.c_str(), machine_health.c_str());
-        
+
         sleep_ms(1000);
     }
 }

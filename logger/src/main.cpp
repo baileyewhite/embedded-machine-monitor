@@ -9,8 +9,11 @@ int main()
     std::ifstream serial("/dev/ttyACM0");
 
     if(!serial.is_open())
-        printf("Error: Couldn't open '/dev/ttyACM0");
-    
+    {
+        std::cerr << "Error: Couldn't open /dev/ttyACM0\n";
+        return 1;
+    }
+
     std::string line;
 
     std::string timestamp;
@@ -24,10 +27,13 @@ int main()
 
         timestamp = get_timestamp();
 
-        Tick tick = parse_telemetry_tick(line);
+        std::optional<Tick> tick = parse_telemetry_tick(line);
 
-        std::cout << timestamp << ',' << tick << '\n';
-        csvFile << timestamp << ',' << tick << std::endl;
+        if(tick)
+        {
+            std::cout << timestamp << ',' << *tick << '\n';
+            csvFile << timestamp << ',' << *tick << std::endl;
+        }
     }
 
     return 0;

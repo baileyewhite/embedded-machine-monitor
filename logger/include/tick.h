@@ -2,6 +2,8 @@
 
 #include <string>
 #include <sstream>
+#include <iostream>
+#include <optional>
 
 struct Tick
 {
@@ -13,4 +15,4 @@ struct Tick
 
 std::ostream& operator<<(std::ostream& os, const Tick& tick);
 
-Tick parse_telemetry_tick(const std::string& line);
+std::optional<Tick> parse_telemetry_tick(const std::string& line);
